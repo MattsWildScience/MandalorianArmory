@@ -2,11 +2,10 @@
 #include <Arduino.h>
 #include "LedControl.h"
 
-// Initialise the LedControl library
+// This code runs the Boba Fett chest plate
 // pin 12 on DIN, 
 // pin 13 on Clk, 
 // pin 1 on LOAD
-// number of displays: 1
 LedControl lc = LedControl(12, 13, 1, 1);
 #define DELAY 100
 const int ledCount = 10; 
@@ -38,25 +37,11 @@ void setup() {
   digitalWrite (10, LOW);
   digitalWrite (11, LOW);
  
-  // On startup, the MAX72XX chip is in power-safe mode
-  // we are waking this chip for device 0 with the shutdown command
   lc.shutdown(0, false);
 
-  // Set the intensity of the screen on device 0 with a value between 0 and 15
   lc.setIntensity(0, 5);
   
-  // Clear the display of device 0
   lc.clearDisplay(0);
-
-
-  //
-  //      N
-  //   NW   NE
-  //      M
-  //   SW   SE
-  //      S      D
-  //
-  // D N NE SE S SW NW M
   lc.setRow(0, 0, B01101100);
   lc.setRow(0, 1, B00101001);
   lc.setRow(0, 2, B01001001);
@@ -68,11 +53,6 @@ void setup() {
 }
 
 void loop() {
-  
-
-
- 
-
   digitalWrite (2, HIGH);
   delay(DELAY);
   digitalWrite (3, HIGH);
